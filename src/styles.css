@@ -1,0 +1,8 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+._dot {
+  transition: opacity 0.1s;
+}
