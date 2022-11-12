@@ -7,7 +7,7 @@ import {
   useEffect,
   useReducer,
   useRef,
-  useState
+  useState,
 } from "react";
 import produce from "immer";
 
@@ -85,20 +85,20 @@ const defaultPerformances = {
       name: "performance 1",
       id: "a",
       tempo: 72,
-      notes: "notes 1"
+      notes: "notes 1",
     },
     {
       name: "performance 2",
       id: "b",
       tempo: 72,
-      notes: "notes 2"
+      notes: "notes 2",
     },
     {
       name: "performance 3",
       id: "c",
       tempo: 72,
-      notes: "notes 3"
-    }
+      notes: "notes 3",
+    },
   ],
   selectedPerformanceId: "c",
   performanceActive: false,
@@ -106,7 +106,7 @@ const defaultPerformances = {
   exportViewVisible: false,
   importViewVisible: false,
   mainPanelView: "performancesList",
-  editingPerformance: false
+  editingPerformance: false,
 };
 
 function savePerformances(performances) {
@@ -495,12 +495,12 @@ function AppToolbar() {
           fontWeight:
             performances.mainPanelView === "performancesList"
               ? "bold"
-              : "initial"
+              : "initial",
         }}
         onClick={() => {
           dispatch({
             type: "toggleAppMainPanelView",
-            appMainPanelView: "performancesList"
+            appMainPanelView: "performancesList",
           });
         }}
       >
@@ -510,12 +510,12 @@ function AppToolbar() {
         variant="link"
         style={{
           fontWeight:
-            performances.mainPanelView === "performance" ? "bold" : "initial"
+            performances.mainPanelView === "performance" ? "bold" : "initial",
         }}
         onClick={() => {
           dispatch({
             type: "toggleAppMainPanelView",
-            appMainPanelView: "performance"
+            appMainPanelView: "performance",
           });
         }}
       >
@@ -552,7 +552,7 @@ function PerformancesToolbar() {
             onClick={() => {
               dispatch({
                 type: "toggleExportView",
-                exportViewVisible: true
+                exportViewVisible: true,
               });
             }}
           >
@@ -562,7 +562,7 @@ function PerformancesToolbar() {
             onClick={() => {
               dispatch({
                 type: "toggleImportView",
-                importViewVisible: true
+                importViewVisible: true,
               });
             }}
           >
@@ -576,7 +576,7 @@ function PerformancesToolbar() {
 
               if (confirmation) {
                 dispatch({
-                  type: "deleteAll"
+                  type: "deleteAll",
                 });
               }
             }}
@@ -671,7 +671,7 @@ function PerformanceListItemViewMode({ performance, setEditing }) {
         onClick={() => {
           dispatch({
             type: "open",
-            performanceId: performance.id
+            performanceId: performance.id,
           });
         }}
       >
@@ -714,7 +714,7 @@ function PerformanceListItemEditMode({ performance, setEditing }) {
     dispatch({
       type: "setPerformanceName",
       performanceId: performance.id,
-      name: performanceName
+      name: performanceName,
     });
     setEditing(false);
   };
@@ -746,7 +746,7 @@ function PerformanceListItemEditMode({ performance, setEditing }) {
               dispatch({
                 type: "move",
                 performanceId: performance.id,
-                increment: -1
+                increment: -1,
               });
             }}
           >
@@ -757,7 +757,7 @@ function PerformanceListItemEditMode({ performance, setEditing }) {
               dispatch({
                 type: "move",
                 performanceId: performance.id,
-                increment: 1
+                increment: 1,
               });
             }}
           >
@@ -773,7 +773,7 @@ function PerformanceListItemEditMode({ performance, setEditing }) {
               if (response) {
                 dispatch({
                   type: "delete",
-                  performanceId: performance.id
+                  performanceId: performance.id,
                 });
               }
             }}
@@ -804,8 +804,8 @@ function PerformanceAddListItem() {
         name: performanceName,
         id: new Date().toISOString(),
         tempo: 42,
-        notes: ""
-      }
+        notes: "",
+      },
     });
     setPerformanceName("");
   }, [dispatch, performanceName, setPerformanceName]);
@@ -859,7 +859,7 @@ const Dot = forwardRef(({ size = 1, variant = "primary", ...rest }, ref) => {
     cursor: rest.onClick != null ? "pointer" : null,
     display: "flex",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   };
 
   let className = "dot";
@@ -887,14 +887,14 @@ function usePerformanceDetails(performance) {
       dispatch({
         type: "setNotes",
         performanceId: performance.id,
-        notes: notes
+        notes: notes,
       });
       dispatch({
         type: "setPerformanceName",
         performanceId: performance.id,
-        name: name
+        name: name,
       });
-    }
+    },
   };
 }
 
@@ -916,7 +916,7 @@ function PerformanceTitleToolbar({ performance }) {
   let performances = usePerformances();
 
   let flexStyle = {
-    justifyContent: "space-between"
+    justifyContent: "space-between",
   };
 
   let performanceNumber =
@@ -952,7 +952,7 @@ function PreviousPerformanceButton() {
       onClick={() => {
         dispatch({
           type: "previous",
-          performanceId: performances.selectedPerformanceId
+          performanceId: performances.selectedPerformanceId,
         });
       }}
     >
@@ -973,7 +973,7 @@ function NextPerformanceButton() {
       onClick={() => {
         dispatch({
           type: "next",
-          performanceId: performances.selectedPerformanceId
+          performanceId: performances.selectedPerformanceId,
         });
       }}
     >
@@ -1040,7 +1040,7 @@ function PerformanceNotesViewMode({ performance, setEditing }) {
   const preStyle = {
     fontFamily: "inherit",
     fontSize: "inherit",
-    textAlign: "left"
+    textAlign: "left",
   };
 
   return (
@@ -1099,7 +1099,7 @@ function PerformanceEditToolbar({ save }) {
           onClick={() => {
             dispatch({
               type: "toggleEditingPerformance",
-              editingPerformance: false
+              editingPerformance: false,
             });
           }}
         >
@@ -1111,7 +1111,7 @@ function PerformanceEditToolbar({ save }) {
             save();
             dispatch({
               type: "toggleEditingPerformance",
-              editingPerformance: false
+              editingPerformance: false,
             });
           }}
         >
@@ -1126,7 +1126,7 @@ function PerformanceEditToolbar({ save }) {
           onClick={() => {
             dispatch({
               type: "toggleEditingPerformance",
-              editingPerformance: true
+              editingPerformance: true,
             });
           }}
         >
@@ -1209,7 +1209,7 @@ function IncrementButtons({ performance }) {
           dispatch({
             type: "incrementTempo",
             performanceId: performance.id,
-            increment: -1
+            increment: -1,
           });
         }}
       >
@@ -1221,7 +1221,7 @@ function IncrementButtons({ performance }) {
           dispatch({
             type: "incrementTempo",
             performanceId: performance.id,
-            increment: 1
+            increment: 1,
           });
         }}
       >
@@ -1238,7 +1238,7 @@ function SetTempoView({ performance }) {
     dispatch({
       type: "setTempo",
       performanceId: performance.id,
-      tempo: tempo
+      tempo: tempo,
     });
   };
 
@@ -1400,7 +1400,7 @@ function ActiveMetronome({ performance }) {
           variant="light"
           onClick={() => {
             dispatch({
-              type: "stop"
+              type: "stop",
             });
           }}
         />
@@ -1419,7 +1419,7 @@ function InactiveMetronome({ performance }) {
         variant="light"
         onClick={() => {
           dispatch({
-            type: "start"
+            type: "start",
           });
         }}
       >
@@ -1475,7 +1475,7 @@ function ExportView() {
           onClick={() => {
             dispatch({
               type: "toggleExportView",
-              exportViewVisible: false
+              exportViewVisible: false,
             });
           }}
         >
@@ -1510,7 +1510,7 @@ function ImportView() {
           onClick={() => {
             dispatch({
               type: "toggleImportView",
-              importViewVisible: false
+              importViewVisible: false,
             });
           }}
         >
@@ -1524,7 +1524,7 @@ function ImportView() {
 
               dispatch({
                 type: "import",
-                performances: performances
+                performances: performances,
               });
             } catch (e) {
               console.error("Error parsing JSON", e);
